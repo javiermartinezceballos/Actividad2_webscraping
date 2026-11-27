@@ -109,19 +109,24 @@
         const ctx = document.getElementById('chartMarcas').getContext('2d');
         new Chart(ctx, {
             type: 'bar',
-            data: {                labels: marcasLabels,
-                datasets: [{                    label: 'Productos',
+            data: {
+                labels: marcasLabels,
+                datasets: [{
+                    label: 'Productos',
                     data: marcasValores,
                     backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#dc3545', '#6c757d'],
                     borderRadius: 8,
                     borderWidth: 0
                 }]
             },
-            options: {                responsive: true,
+            options: {
+                responsive: true,
                 maintainAspectRatio: false,
-                plugins: {                    legend: { display: false }
+                plugins: {
+                    legend: { display: false }
                 },
-                scales: {                    y: { beginAtZero: true }
+                scales: {
+                    y: { beginAtZero: true }
                 }
             }
         });
@@ -134,10 +139,10 @@
             tabla.innerHTML = '';
             lista.forEach(prod => {
                 const fila = `<tr>
-                    <td><span class="badge bg-secondary">\${prod['Referencia (SKU)']}</span></td>
-                    <td class="fw-semibold">\${prod['Nombre/Marca']}</td>
-                    <td><span class="badge bg-success fs-6">\${prod['Valor'] || 'No Disponible'}</span></td>
-                    <td><small class="text-muted">\${prod['Características']}</small></td>
+                    <td><span class="badge bg-secondary">${prod['Referencia (SKU)']}</span></td>
+                    <td class="fw-semibold">${prod['Nombre/Marca']}</td>
+                    <td><span class="badge bg-success fs-6">${prod['Valor'] || 'No Disponible'}</span></td>
+                    <td><small class="text-muted">${prod['Características']}</small></td>
                 </tr>`;
                 tabla.innerHTML += fila;
             });
