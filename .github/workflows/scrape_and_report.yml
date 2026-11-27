@@ -34,8 +34,8 @@ jobs:
 
     - name: Sincronizar Cambios en GitHub
       run: |
-        git config --global user.name 'Andres Felipe Palacio Angel'
-        git config --global user.email 'andres.palacio@prof.iudigital.edu.co'
+        git config --global user.name 'Javier Hernan Martinez Ceballos'
+        git config --global user.email 'javier.martinez@est.iudigital.edu.co'
         git add .
         git commit -m 'clock: Actualización automática semanal de datos y BI' || echo 'No hay cambios para subir'
         git push
