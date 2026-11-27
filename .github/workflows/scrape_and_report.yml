@@ -17,7 +17,7 @@ jobs:
       run: |
         HOY=$(date +%Y-%m-%d)
         LIMITE="2026-12-09"
-        if [ "$HOY" \> "$LIMITE" ]; then
+        if [ "$HOY" ">" "$LIMITE" ]; then
           echo "⚠️ La programación temporal ha expirado el 9 de Diciembre de 2026. Deteniendo flujo."
           exit 1
         fi
@@ -25,7 +25,7 @@ jobs:
 
     - name: Configurar Python
       uses: actions/setup-python@v4
-      with: 
+      with:
         python-version: '3.10'
 
     - name: Instalar dependencias
