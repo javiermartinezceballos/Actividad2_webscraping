@@ -1,0 +1,41 @@
+name: Scraping y BI Automatizado Semanal
+
+on:
+  schedule:
+    # Se ejecuta todos los miércoles a las 19:00 UTC (7:00 PM Colombia)
+    - cron: '0 19 * * 3'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Copiar repositorio
+      uses: actions/checkout@v3
+
+    - name: Validar Fecha Límite (Hasta el 9 de Diciembre de 2026)
+      run: |
+        HOY=$(date +%Y-%m-%d)
+        LIMITE="2026-12-09"
+        if [ "$HOY" \> "$LIMITE" ]; then
+          echo "⚠️ La programación temporal ha expirado el 9 de Diciembre de 2026. Deteniendo flujo."
+          exit 1
+        fi
+        echo "✓ Dentro del rango de validez. Continuando ejecución."
+
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Instalar dependencias
+      run: |
+        pip install beautifulsoup4 lxml requests pandas
+
+    - name: Sincronizar Cambios en GitHub
+      run: |
+        git config --global user.name 'Andres Felipe Palacio Angel'
+        git config --global user.email 'andres.palacio@prof.iudigital.edu.co'
+        git add .
+        git commit -m 'clock: Actualización automática semanal de datos y BI' || echo 'No hay cambios para subir'
+        git push
