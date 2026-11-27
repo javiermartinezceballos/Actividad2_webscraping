@@ -109,8 +109,7 @@
         const ctx = document.getElementById('chartMarcas').getContext('2d');
         new Chart(ctx, {
             type: 'bar',
-            data: {
-                labels: marcasLabels,
+            data: {                labels: marcasLabels,
                 datasets: [{                    label: 'Productos',
                     data: marcasValores,
                     backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#dc3545', '#6c757d'],
